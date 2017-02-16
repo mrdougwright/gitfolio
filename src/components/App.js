@@ -1,25 +1,25 @@
 import '../App.css';
 import React, { Component } from 'react';
 import base from '../config/firebase'
+import api from '../config/githubAPI'
+import ListRepos from './ListRepos'
+
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       uid: null,
-      owner: null
+      owner: null,
+      username: null
     }
   }
 
 
   componentDidMount() {
     base.onAuth((user) => {
-      if(user) {
-        this.authHandler(null, { user })
-      }
+      if(user) { this.authHandler(null, { user }) }
     })
-
-    // base.syncState()
   }
 
   authenticate = (provider) => {
@@ -29,16 +29,20 @@ class App extends Component {
 
   authHandler = (err, authData) => {
     if (err) { console.error(err); return; }
+    const userRef = base.database().ref(this.props.params.githubUser)
 
-    const listRef = base.database().ref(this.props.params.githubUser)
-
-    listRef.once('value', (snapshot) => {
+    userRef.once('value', (snapshot) => {
       const data = snapshot.val() || {}
 
+      api.getUser(authData.user.providerData[0].uid)
+        .then(user => {
+          this.setState({ username: user.login })
+        })
+
       if(!data.owner) {
-        listRef.set({ owner: authData.user.uid })
+        userRef.set({ owner: authData.user.uid })
       }
-      console.log(data)
+
       this.setState({
         uid: authData.user.uid,
         owner: data.owner || authData.user.uid
@@ -70,11 +74,12 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Welcome to Gitfolio</h2>
+          <div className="logout">{logout}</div>
         </div>
         <p className="App-intro">
           Your auto generated github portfolio.
         </p>
-        <div className="logout">{logout}</div>
+        <ListRepos username={this.state.username} />
       </div>
     );
   }
