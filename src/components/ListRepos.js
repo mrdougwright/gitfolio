@@ -1,5 +1,6 @@
 import React from 'react'
 import api from '../config/githubAPI'
+import Repo from './Repo'
 
 
 class ListRepos extends React.Component {
@@ -24,13 +25,12 @@ class ListRepos extends React.Component {
         {
           this.state.repos.map(repo => {
             return (
-              <a href={repo.homepage} target="_blank">
-                <li className="bg-hot-pink ma2 pa3 pa4-ns grow br2" key={repo.homepage}>
-                  <b className="washed-yellow db f3 mb1">{repo.name}</b>
-                  <p>{repo.description}</p>
-                  <img src={'meh'} alt={repo.name} />
-                </li>
-              </a>
+              <Repo
+                name={repo.name}
+                key={repo.homepage}
+                homepage={repo.homepage}
+                description={repo.description}
+              />
             )
           })
         }
