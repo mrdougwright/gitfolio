@@ -13,20 +13,24 @@ class ListRepos extends React.Component {
   componentWillReceiveProps(nextProps) {
     api.getRepos(nextProps.username)
       .then(repos => {
-        this.setState({ repos: Array.from(repos) })
+        const filteredRepos = repos.filter(r => r.homepage)
+        this.setState({ repos: filteredRepos })
       })
   }
 
   render() {
     return (
-      <ul>
+      <ul className="mw7">
         {
           this.state.repos.map(repo => {
             return (
-              <li key={Math.random()}>
-                <span>{repo.name}</span>
-                <span>{repo.homepage}</span>
-              </li>
+              <a href={repo.homepage} target="_blank">
+                <li className="bg-hot-pink ma2 pa3 pa4-ns grow br2" key={repo.homepage}>
+                  <b className="washed-yellow db f3 mb1">{repo.name}</b>
+                  <p>{repo.description}</p>
+                  <img src={'meh'} alt={repo.name} />
+                </li>
+              </a>
             )
           })
         }

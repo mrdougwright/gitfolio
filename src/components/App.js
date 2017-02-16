@@ -62,9 +62,9 @@ class App extends Component {
       </nav>
     )
   }
-
+//f6 link dim ph3 pv2 dib
   render() {
-    const logout = <button onClick={this.logout}>Log Out</button>
+    const logout = <a className="f6 link ph3 pv2 br2 white dim hover-washed-yellow bg-navy" onClick={this.logout}>Log Out</a>
 
     if(!this.state.uid) {
       return <div>{this.renderLogin()}</div>
@@ -73,8 +73,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
+          <div className="logout fr">{logout}</div>
           <h2>Welcome to Gitfolio</h2>
-          <div className="logout">{logout}</div>
         </div>
         <p className="App-intro">
           Your auto generated github portfolio.

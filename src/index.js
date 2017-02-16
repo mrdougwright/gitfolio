@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'tachyons'
 import { browserHistory, Router, Route } from 'react-router'
 import App from './components/App';
 import NotFound from './components/NotFound'
