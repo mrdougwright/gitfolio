@@ -2,6 +2,7 @@ import '../App.css';
 import React, { Component } from 'react';
 import base from '../config/firebase'
 import api from '../config/githubAPI'
+import { browserHistory } from 'react-router'
 import ListRepos from './ListRepos'
 
 
@@ -36,7 +37,8 @@ class App extends Component {
 
       api.getUser(authData.user.providerData[0].uid)
         .then(user => {
-          this.setState({ username: user.login })
+          this.setState({ username: this.props.params.githubUser || user.login })
+          browserHistory.push(`/${this.state.username}`)
         })
 
       if(!data.owner) {

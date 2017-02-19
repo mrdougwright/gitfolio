@@ -1,5 +1,5 @@
 import React from 'react'
-import api from '../config/githubAPI'
+import githubApi from '../config/githubAPI'
 import Repo from './Repo'
 
 
@@ -12,7 +12,7 @@ class ListRepos extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    api.getRepos(nextProps.username)
+    githubApi.getRepos(nextProps.username)
       .then(repos => {
         const filteredRepos = repos.filter(r => r.homepage)
         this.setState({ repos: filteredRepos })

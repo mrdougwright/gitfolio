@@ -1,4 +1,5 @@
 import React from 'react'
+import railsApi from '../config/railsAPI'
 
 
 class Repo extends React.Component {
@@ -9,6 +10,15 @@ class Repo extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    railsApi.getUserSnapshots(nextProps.username)
+      .then(repos => {
+        const repo = repos.filter(repo => {
+          return repo.name === this.props.name
+        })
+        this.setState({ image: repo.image_url })
+      })
+  }
 
 
   render() {
