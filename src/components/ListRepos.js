@@ -30,6 +30,7 @@ class ListRepos extends React.Component {
                 key={repo.homepage}
                 homepage={repo.homepage}
                 description={repo.description}
+                username={this.props.username}
               />
             )
           })

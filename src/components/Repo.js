@@ -11,11 +11,8 @@ class Repo extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    railsApi.getUserSnapshots(nextProps.username)
-      .then(repos => {
-        const repo = repos.filter(repo => {
-          return repo.name === this.props.name
-        })
+    railsApi.getRepoImage(nextProps.username, this.props.name)
+      .then(repo => {
         this.setState({ image: repo.image_url })
       })
   }

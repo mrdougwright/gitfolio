@@ -64,7 +64,7 @@ class App extends Component {
       </nav>
     )
   }
-//f6 link dim ph3 pv2 dib
+
   render() {
     const logout = <a className="f6 link ph3 pv2 br2 white dim hover-washed-yellow bg-navy" onClick={this.logout}>Log Out</a>
 
