@@ -1,4 +1,4 @@
-const API = process.env.RAILS_API
+const API = process.env.REACT_APP_RAILS_API
 
 var api = {
   getUserSnapshots(username) {
