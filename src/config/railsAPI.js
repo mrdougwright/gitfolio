@@ -1,5 +1,4 @@
-// const API = 'https://githubcv.herokuapp.com/api/v1'
-const API = 'http://localhost:3000/api/v1'
+const API = process.env.RAILS_API
 
 var api = {
   getUserSnapshots(username) {
