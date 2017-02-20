@@ -1,5 +1,5 @@
 import React from 'react'
-import githubApi from '../config/githubAPI'
+import railsAPI from '../config/railsAPI'
 import Repo from './Repo'
 
 
@@ -12,10 +12,9 @@ class ListRepos extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    githubApi.getRepos(nextProps.username)
+    railsAPI.getUserSnapshots(nextProps.username)
       .then(repos => {
-        const filteredRepos = repos.filter(r => r.homepage)
-        this.setState({ repos: filteredRepos })
+        this.setState({ repos: repos })
       })
   }
 
@@ -27,9 +26,9 @@ class ListRepos extends React.Component {
             return (
               <Repo
                 name={repo.name}
-                key={repo.homepage}
-                homepage={repo.homepage}
-                description={repo.description}
+                key={repo.url}
+                homepage={repo.url}
+                description={repo.desc}
                 username={this.props.username}
               />
             )
