@@ -1,22 +1,14 @@
 import '../App.css';
 import React, { Component } from 'react';
-import ListRepos from './ListRepos'
+import { browserHistory } from 'react-router'
 
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      username: null
-    }
-  }
 
-  componentDidMount() {
-    this.setState({
-      username: this.props.params.githubUser
-    })
+  gotoHandle = () => {
+    const username = document.getElementById('handle').value
+    browserHistory.push(`/${username}`)
   }
-
 
   render() {
     return (
@@ -24,11 +16,11 @@ class App extends Component {
         <div>
           <h2>Welcome to Gitfolio</h2>
         </div>
-        <p className="">
+        <p>
           Your auto generated github portfolio.
-          <span className="i fw1"> (Simply type a github handle in the url above)</span>
         </p>
-        <ListRepos username={this.state.username} />
+        <input type="text" id="handle" placeholder="github handle" />
+        <a className="f6 ma1 link dim br3 ph3 pv1 mb2 dib white bg-dark-blue" onClick={this.gotoHandle}>View Portfolio</a>
       </div>
     );
   }
