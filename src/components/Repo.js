@@ -21,7 +21,7 @@ class Repo extends React.Component {
   render() {
     return (
       <a href={this.props.homepage} target="_blank">
-        <li className="bg-gold ma2 pa3 pa4-ns grow br2">
+        <li className={`bg-${this.props.color} ma2 pa3 pa4-ns grow br2`}>
           <b className="washed-yellow db f3 mb1">{this.props.name}</b>
           <p>{this.props.description}</p>
           <div className="w-80 center">

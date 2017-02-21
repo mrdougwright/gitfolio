@@ -10,7 +10,7 @@ const Root = () => {
     <Router history={browserHistory}>
       <div>
         <Route path="/" component={App} />
-        <Route path="/:githubUser" component={ListRepos} />
+        <Route path="/:githubUser(/:color)" component={ListRepos} />
       </div>
     </Router>
   )
