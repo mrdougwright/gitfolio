@@ -1,7 +1,5 @@
 import '../App.css';
 import React, { Component } from 'react';
-import api from '../config/githubAPI'
-import { browserHistory } from 'react-router'
 import ListRepos from './ListRepos'
 
 

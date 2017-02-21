@@ -24,7 +24,7 @@ class Repo extends React.Component {
         <li className="bg-hot-pink ma2 pa3 pa4-ns grow br2">
           <b className="washed-yellow db f3 mb1">{this.props.name}</b>
           <p>{this.props.description}</p>
-          <div className="w-50">
+          <div className="w-80 center">
             <img className="w-100" src={this.state.image} alt={this.props.name} />
           </div>
         </li>
