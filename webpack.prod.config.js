@@ -25,10 +25,10 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+        'NODE_ENV': JSON.stringify('production'),
+        'RAILS_API': 'https://githubcv.herokuapp.com/api/v1'
       }
-    }),
-    new Dotenv({ path: './.env' })
+    })
   ],
 
   module: {
