@@ -1,30 +1,16 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+const path = require('path')
+const express = require('express')
 
-new WebpackDevServer(webpack(config), {
-    publicPath: config.output.publicPath,
-    hot: true,
-    historyApiFallback: true,
-    // It suppress error shown in console, so it has to be set to false.
-    quiet: false,
-    // It suppress everything except error, so it has to be set to false as well
-    // to see success build.
-    noInfo: false,
-    stats: {
-      // Config for minimal console.log mess.
-      assets: false,
-      colors: true,
-      version: false,
-      hash: false,
-      timings: false,
-      chunks: false,
-      chunkModules: false
-    }
-}).listen(3001, 'localhost', function (err) {
-    if (err) {
-        console.log(err);
-    }
+module.exports = {
+  app: function () {
+    const app = express()
+    const indexPath = path.join(__dirname, 'public/index.html')
+    const publicPath = express.static(path.join(__dirname, 'public'))
 
-  console.log('Listening at localhost:3001');
-});
+    app.use('/public', publicPath)
+    app.get('/', function (_, res) { res.sendFile(indexPath) })
+    app.get('/:githubUser', function (_, res) { res.sendFile(indexPath) })
+
+    return app
+  }
+}
